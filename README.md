@@ -104,7 +104,7 @@ accelerate launch \
     --pretrained_mmadavla /path/to/pretrained/mmada-vla \
     --action_chunk_size 5 \
     --num_train_epochs <epochs> \
-    --data_paths /path/to/preprocessed/10chunk/libero/suite
+    --data_paths /path/to/preprocessed/5chunk/libero/suite
 ```
 
 ---
@@ -131,7 +131,7 @@ python mmadavla/eval/flask/server.py \
 
 ## ❤️ Acknowledgment
 
-We sincerely thank [LLaDA](https://github.com/ML-GSAI/LLaDA), [Show-o](https://github.com/showlab/Show-o), [MMaDA](https://github.com/Gen-Verse/MMaDA), [dLLM-cache](https://github.com/maomaocun/dLLM-cache), [LLaVA-VLA](https://github.com/OpenHelix-Team/LLaVA-VLA), [openpi](https://github.com/Physical-Intelligence/openpi), [VLA-Adapter](https://github.com/OpenHelix-Team/VLA-Adapter) and [dLLM-RL](https://github.com/Gen-Verse/dLLM-RL) for their excellent code implementations.
+We sincerely thank [LLaDA](https://github.com/ML-GSAI/LLaDA), [Show-o](https://github.com/showlab/Show-o), [MMaDA](https://github.com/Gen-Verse/MMaDA), [dLLM-cache](https://github.com/maomaocun/dLLM-cache), [LLaVA-VLA](https://github.com/OpenHelix-Team/LLaVA-VLA), [openpi](https://github.com/Physical-Intelligence/openpi), and [VLA-Adapter](https://github.com/OpenHelix-Team/VLA-Adapter) for their excellent code implementations.
 
 ---
 

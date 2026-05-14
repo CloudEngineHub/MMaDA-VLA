@@ -1,5 +1,6 @@
 import os
 import json
+import time
 import torch
 import autoroot
 import numpy as np
@@ -9,9 +10,9 @@ from typing import List, Tuple, Union
 from transformers import AutoTokenizer
 from mmadavla.utils.prompt import Prompting
 from mmadavla.models.magvitv2 import MagViTv2
+from mmadavla.models.mmadavla import MMaDAVLAModelLM
 from mmadavla.utils.diffusion import cosine_mask_schedule
 from mmadavla.models.action_tokenizer import ActionTokenizer
-from mmadavla.models.mmadavla import MMaDAVLAModelLM, rl_generate
 from mmadavla.data.utils import image_transform, unnormalize_action
 from mmadavla.data.preprocess import merge_multiview_rgb, load_action_stats
 from mmadavla.utils.dllm_cache import dLLMCacheConfig, dLLMCache, register_cache_MMaDA
@@ -147,6 +148,7 @@ class MMaDA_VLA_Server(object):
             action_tokens=action_tokens,
         )
         with torch.autocast("cuda", dtype=torch.bfloat16):
+            start = time.perf_counter()
             actions = self.mmadavla.batch_generate(
                 input_ids=input_ids,
                 attention_bias=attention_bias,
@@ -154,5 +156,6 @@ class MMaDA_VLA_Server(object):
                 timesteps=self.timesteps,
                 prompt=self.prompt
             )
+            end = time.perf_counter()
             actions = self.decode_action(actions)
-        return actions
+        return actions, (end - start) * 1000
